@@ -1,4 +1,5 @@
 const libraryContainer = document.querySelector(".library-container");
+const addBtn = document.querySelector(".add-btn");
 
 let myLibrary = [];
 
@@ -10,7 +11,17 @@ function Book(title, author, pages, read) {
 }
 
 function addBookToLibrary() {
-  // do stuff here
+  let newTitle = prompt("Book title: ")
+  let newAuthor = prompt("Author: ")
+  let newPages = prompt("Pages: ")
+  let newRead = prompt("Read (Y/N): ")
+  if (newRead.toLowerCase() == "y") {
+      newRead = true 
+  } else newRead = false
+
+  const newBook = new Book(newTitle, newAuthor, newPages, newRead)
+  myLibrary.push(newBook)
+  displayBooks(myLibrary)
 }
 
 function displayBooks(myLibrary) {
@@ -24,6 +35,7 @@ function displayBooks(myLibrary) {
         const author = document.createElement('div');
         const pages = document.createElement('div');
         const read = document.createElement('div');
+        const delBook = document.createElement('button');
         let readStatus = false;
         if (book.read) readStatus = true;
 
@@ -34,12 +46,21 @@ function displayBooks(myLibrary) {
             read.textContent = "Read"
         } else {
             read.textContent = "Not Read"
-        }        
+        }
+        delBook.textContent = "Delete Book"   
+        delBook.addEventListener('click', (e) => {
+            console.log(e.target.getAttribute("data-num"))
+            myLibrary.pop(e.target.getAttribute("data-num"))
+            e.target.parentNode.remove()
+        })     
         
         card.append(title);
         card.append(author);
         card.append(pages);
         card.append(read);
+        card.append(delBook);
+        card.classList.add("book-card");
+        card.setAttribute("data-num", myLibrary.length)
         libraryContainer.append(card);
     });
 }
@@ -50,6 +71,6 @@ myLibrary.push(testBook1)
 myLibrary.push(testBook2)
 displayBooks(myLibrary)
 
-myLibrary.pop(testBook1);
-
-displayBooks(myLibrary)
+addBtn.addEventListener('click', () => {
+    addBookToLibrary()
+})

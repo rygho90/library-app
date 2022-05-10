@@ -23,23 +23,39 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     height: 100%;
 }
 
 .library-container {
-    width: 90%;
-    height: 90%;
+    width: 800px;
+    height: 80%;
     border: solid 1px black;
     padding: 10px;
     display: grid;
+    grid-auto-columns: 280px;
+    grid-auto-rows: auto;
+    grid-auto-flow: column;
 }
 
-.add-btn,
+.add-btn {
+    padding: 25px 35px;
+    margin: 10px;
+    background-color: lightgreen;
+}
+
+.clear-btn {
+    padding: 25px;
+    margin: 10px;
+    background-color: lightcoral;
+}
+
 .book-card {
     width: 200px;
-    height: 275px;
+    height: 260px;
     border: solid 1px black;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
