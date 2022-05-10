@@ -36,18 +36,29 @@ function displayBooks(myLibrary) {
         const author = document.createElement('div');
         const pages = document.createElement('div');
         const read = document.createElement('div');
+        const readBtn = document.createElement('button');
         const delBook = document.createElement('button');
-        let readStatus = false;
-        if (book.read) readStatus = true;
 
         title.textContent = book.title;
         author.textContent = book.author;
         pages.textContent = book.pages;
-        if (readStatus) {
+        if (book.read) {
             read.textContent = "Read"
         } else {
             read.textContent = "Not Read"
         }
+
+        readBtn.textContent = "Change Read Status"
+        readBtn.addEventListener('click', (e) => {
+            if (book.read) {
+                book.read = false
+                read.textContent = "Not Read"
+            } else {
+                book.read = true
+                read.textContent = "Read"
+            }
+        })
+        
         delBook.textContent = "Delete Book"   
         delBook.addEventListener('click', (e) => {
             console.log(e.target.getAttribute("data-num"))
@@ -59,6 +70,7 @@ function displayBooks(myLibrary) {
         card.append(author);
         card.append(pages);
         card.append(read);
+        card.append(readBtn);
         card.append(delBook);
         card.classList.add("book-card");
         card.setAttribute("data-num", myLibrary.length)
