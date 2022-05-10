@@ -1,5 +1,6 @@
 const libraryContainer = document.querySelector(".library-container");
 const addBtn = document.querySelector(".add-btn");
+const clearBtn = document.querySelector(".clear-btn");
 
 let myLibrary = [];
 
@@ -73,4 +74,11 @@ displayBooks(myLibrary)
 
 addBtn.addEventListener('click', () => {
     addBookToLibrary()
+})
+
+clearBtn.addEventListener('click', () => {
+    while (libraryContainer.firstChild) {
+        libraryContainer.removeChild(libraryContainer.firstChild);
+    }
+    myLibrary = [];
 })
