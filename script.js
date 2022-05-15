@@ -94,3 +94,22 @@ clearBtn.addEventListener('click', () => {
     }
     myLibrary = [];
 })
+
+class Library {
+
+    constructor() {
+
+    }
+
+    addBook() {
+
+    }
+
+    removeBook() {
+
+    }
+
+    clearBooks() {
+        
+    }
+}
